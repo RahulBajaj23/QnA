@@ -49,8 +49,8 @@ export default {
     }
   },
   methods: {
-    async executeSignUp(){
-    }
+    // async executeSignUp(){
+    // }
   }
 }
 </script>
