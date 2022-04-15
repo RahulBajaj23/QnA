@@ -3,8 +3,9 @@
     <authenticated-navbar/>
     <div class="body">
       <div class="addQueryBtn">
-        <button><span><font-awesome-icon :icon="['fas', 'circle-plus']"/></span></button>
+        <button @click="changeNewQueryVisibility"><span><font-awesome-icon :icon="['fas', 'circle-plus']"/></span></button>
       </div>
+      <new-query-u-i v-if="newQueryUIVisibility"/>
       <query-u-i/>
     </div>
   </div>
@@ -13,11 +14,23 @@
 <script>
 import authenticatedNavbar from "@/components/authenticatedNavbar";
 import queryUI from "@/components/queryUI";
+import newQueryUI from "@/components/newQueryUI";
 export default {
   name: "index",
   components: {
     authenticatedNavbar,
-    queryUI
+    queryUI,
+    newQueryUI
+  },
+  data(){
+    return{
+      newQueryUIVisibility: false
+    }
+  },
+  methods: {
+    changeNewQueryVisibility(){
+      this.newQueryUIVisibility = !this.newQueryUIVisibility
+    }
   }
 }
 </script>
