@@ -1,7 +1,7 @@
 <template>
   <div class="sideNavbar">
     <div class="imageSection">
-      <img :src="require('static/1*LfggvmXWpMQhu6diOJv_MA.jpeg')" alt="User Profile Picture">
+<!--      <img :src="require('static/1*LfggvmXWpMQhu6diOJv_MA.jpeg')" alt="User Profile Picture">-->
     </div>
 
     <div class="settingButtons">
