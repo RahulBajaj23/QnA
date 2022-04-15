@@ -13,14 +13,13 @@
 
       <div class="controlButtons">
         <button><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
-        <button id="crossButton"><span><font-awesome-icon :icon="['fas', 'circle-xmark']"/></span></button>
       </div>
     </form>
   </div>
 </template>
 <script>
 export default {
-  name: "newQueryUI"
+  name: "newQueryUI",
 }
 </script>
 

@@ -4,7 +4,7 @@
       <h2 id="designedText">Create new account.</h2>
     </div>
 
-    <form>
+    <form @submit.prevent="">
       <div class="nameSection">
         <div class="firstName">
           <label for="userFirstName">First Name</label>
@@ -32,14 +32,26 @@
         <input type="password" id="userConfirmPassword" name="confirmPassword" placeholder="Confirm password">
       </div>
 
-      <button class="loginBtn"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
+      <button class="loginBtn" type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
     </form>
   </div>
 </template>
 
 <script>
+import {qnaAuthenticator} from "@/plugins/firebase";
 export default {
-  name: "signup"
+  name: "signup",
+  data(){
+    return{
+      userEmail : '',
+      userPassword : '',
+      confirmPassword : ''
+    }
+  },
+  methods: {
+    async executeSignUp(){
+    }
+  }
 }
 </script>
 

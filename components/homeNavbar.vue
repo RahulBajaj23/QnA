@@ -36,7 +36,7 @@ export default {
 }
 
 .loginBtn{
-  margin-left: 1150px;
+  margin-left: 1200px;
   margin-top : 7px;
 }
 

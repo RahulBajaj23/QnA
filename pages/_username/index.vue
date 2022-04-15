@@ -2,8 +2,9 @@
   <div class="mainContainer">
     <authenticated-navbar/>
     <div class="body">
-      <div class="addQueryBtn">
-        <button @click="changeNewQueryVisibility"><span><font-awesome-icon :icon="['fas', 'circle-plus']"/></span></button>
+      <div class="queryButtons">
+        <button @click="newQueryUIVisible" v-if="!newQueryUIVisibility"><span><font-awesome-icon :icon="['fas', 'circle-plus']"/></span></button>
+        <button id="discardButton" @click="newQueryUIVisible" v-if="newQueryUIVisibility"><span><font-awesome-icon :icon="['fas', 'circle-xmark']"/></span></button>
       </div>
       <new-query-u-i v-if="newQueryUIVisibility"/>
       <query-u-i/>
@@ -28,7 +29,7 @@ export default {
     }
   },
   methods: {
-    changeNewQueryVisibility(){
+    newQueryUIVisible(){
       this.newQueryUIVisibility = !this.newQueryUIVisibility
     }
   }
@@ -46,14 +47,23 @@ export default {
   margin: 60px auto auto;
 }
 
-.addQueryBtn button{
+.queryButtons button{
   border: none;
   outline: none;
   color: #C5C6C7;
   font-size: 40px;
 }
 
-.addQueryBtn button:hover{
+.queryButtons button:hover{
   color: #4CC3FF;
 }
+
+#discardButton{
+  color: #7a2d2d;
+}
+
+#discardButton:hover{
+  color: #ff4c52;
+}
+
 </style>
