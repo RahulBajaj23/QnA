@@ -7,12 +7,12 @@
     <form>
       <div class="emailSection">
         <label for="userEmail">Email</label>
-        <input type="email" id="userEmail" name="email" placeholder="Enter your email">
+        <input type="email" id="userEmail" name="email" placeholder="Enter your email" v-model="userEmail">
       </div>
 
       <div class="passwordSection">
         <label for="userPassword">Password</label>
-        <input type="password" id="userPassword" name="password" placeholder="Password">
+        <input type="password" id="userPassword" name="password" placeholder="Password" v-model="userPassword">
       </div>
       <button class="loginBtn"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
     </form>
@@ -22,7 +22,13 @@
 
 <script>
 export default {
-  name: "login"
+  name: "login",
+  data() {
+    return {
+      userEmail : '',
+      userPassword : ''
+    }
+  }
 }
 </script>
 

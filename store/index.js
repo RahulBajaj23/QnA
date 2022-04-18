@@ -13,13 +13,13 @@ export const actions = {
 
     const Decoded = JWTDecoder(AccessToken);
 
-    // if(Decoded){
-    //   commit('unsyncUserAuthentication/SET_UNSYNCUSER', {
-    //     uid: Decoded.user_id,
-    //     email : Decoded.email,
-    //     emailVerified: Decoded.emailVerified,
-    //     photoURL : Decoded.photoURL
-    //   })
-    // }
+    if(Decoded){
+      commit('userAuthentication/SET_USER', {
+        uid: Decoded.user_id,
+        email : Decoded.email,
+        emailVerified: Decoded.emailVerified,
+        photoURL : Decoded.photoURL
+      })
+    }
   }
 }

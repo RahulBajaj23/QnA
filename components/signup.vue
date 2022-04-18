@@ -4,32 +4,32 @@
       <h2 id="designedText">Create new account.</h2>
     </div>
 
-    <form @submit.prevent="">
+    <form @submit.prevent="executeSignUp">
       <div class="nameSection">
         <div class="firstName">
           <label for="userFirstName">First Name</label>
-          <input type="text" id="userFirstName" name="firstname" placeholder="First Name">
+          <input type="text" id="userFirstName" name="firstname" placeholder="First Name" v-model="firstName">
         </div>
 
         <div class="lastName">
           <label for="userLastName">Last Name</label>
-          <input type="text" id="userLastName" name="lastname" placeholder="Last Name">
+          <input type="text" id="userLastName" name="lastname" placeholder="Last Name" v-model="lastName">
         </div>
       </div>
 
       <div class="emailSection">
         <label for="userEmail">Email</label>
-        <input type="email" id="userEmail" name="email" placeholder="Enter new email">
+        <input type="email" id="userEmail" name="email" placeholder="Enter new email" v-model="userCredential.userEmail">
       </div>
 
       <div class="passwordSection">
         <label for="userPassword">Password</label>
-        <input type="password" id="userPassword" name="password" placeholder="Password">
+        <input type="password" id="userPassword" name="password" placeholder="Password" v-model="userCredential.userPassword">
       </div>
 
       <div class="confirmPasswordSection">
         <label for="userConfirmPassword">Confirm Password</label>
-        <input type="password" id="userConfirmPassword" name="confirmPassword" placeholder="Confirm password">
+        <input type="password" id="userConfirmPassword" name="confirmPassword" placeholder="Confirm password" v-model="confirmPassword">
       </div>
 
       <button class="loginBtn" type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
@@ -38,19 +38,27 @@
 </template>
 
 <script>
-import {qnaAuthenticator} from "@/plugins/firebase";
+import { qnaAuthenticator } from "@/plugins/firebase";
 export default {
   name: "signup",
   data(){
     return{
-      userEmail : '',
-      userPassword : '',
-      confirmPassword : ''
+      userCredential : {
+        userEmail : '',
+        userPassword : ''
+      },
+      confirmPassword : '',
+      firstName : '',
+      lastName : ''
     }
   },
   methods: {
-    // async executeSignUp(){
-    // }
+    async executeSignUp(){
+      this.$store.dispatch('userAuthentication/userSignUp', this.userCredential)
+        .then(() => {
+          alert('Rahul Bhadve Account Ban gaya!')
+        })
+    }
   }
 }
 </script>
