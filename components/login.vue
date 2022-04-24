@@ -4,17 +4,17 @@
       <h2 id="designedText">Ready? player One</h2>
     </div>
 
-    <form>
+    <form @submit.prevent="executeLogin">
       <div class="emailSection">
         <label for="userEmail">Email</label>
-        <input type="email" id="userEmail" name="email" placeholder="Enter your email" v-model="userEmail">
+        <input type="email" id="userEmail" name="email" placeholder="Enter your email" v-model="userCredentials.userEmail">
       </div>
 
       <div class="passwordSection">
         <label for="userPassword">Password</label>
-        <input type="password" id="userPassword" name="password" placeholder="Password" v-model="userPassword">
+        <input type="password" id="userPassword" name="password" placeholder="Password" v-model="userCredentials.userPassword">
       </div>
-      <button class="loginBtn"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
+      <button class="loginBtn" type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
     </form>
 
   </div>
@@ -25,8 +25,20 @@ export default {
   name: "login",
   data() {
     return {
-      userEmail : '',
-      userPassword : ''
+      userCredentials: {
+        userEmail : '',
+        userPassword : ''
+      }
+    }
+  },
+  methods: {
+    async executeLogin(){
+      this.$store.dispatch('userAuthentication/userLogin', this.userCredentials)
+        .then(() => {
+          this.$router.push(`/user/${this.$store.getters["userAuthentication/currentUserUID"]}`);
+        }).catch(e => {
+          alert(e.message);
+      });
     }
   }
 }

@@ -18,7 +18,7 @@ export const actions = {
       await signInWithEmailAndPassword(qnaAuthenticator, userCredentials.userEmail, userCredentials.userPassword);
       const userToken = await  qnaAuthenticator.currentUser.getIdToken();
       const { email, uid, emailVerified, photoURL } = qnaAuthenticator.currentUser;
-      Cookie.set('AccessToken', userToken);
+      Cookie.set('UserAccessToken', userToken);
       commit('SET_USER', { email, uid, emailVerified, photoURL });
     }catch(e) {
       throw e;
@@ -30,7 +30,7 @@ export const actions = {
       await createUserWithEmailAndPassword(qnaAuthenticator, userCredential.userEmail, userCredential.userPassword);
       const userToken = await qnaAuthenticator.currentUser.getIdToken();
       const { email, uid, emailVerified, photoURL } = qnaAuthenticator.currentUser;
-      Cookie.set('AccessToken', userToken);
+      Cookie.set('UserAccessToken', userToken);
       commit('SET_USER', { email, uid, emailVerified, photoURL });
     }catch (e){
       throw e;

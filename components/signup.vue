@@ -34,11 +34,21 @@
 
       <button class="loginBtn" type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
     </form>
+
+    <div class="link-container">
+      <span class="already-member">Already a member? <nuxt-link class="login-link" to="/login"> Login</nuxt-link></span>
+    </div>
+    <div class="errorM-container" v-if="isError">
+      <div class="errM">
+        <p><strong>Error</strong> : {{ this.errorMessage }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { qnaAuthenticator } from "@/plugins/firebase";
+import { qnaDatabase } from "@/plugins/firebase";
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 export default {
   name: "signup",
   data(){
@@ -49,15 +59,38 @@ export default {
       },
       confirmPassword : '',
       firstName : '',
-      lastName : ''
+      lastName : '',
+      isError: false,
+      errorMessage: ''
     }
   },
   methods: {
     async executeSignUp(){
       this.$store.dispatch('userAuthentication/userSignUp', this.userCredential)
         .then(() => {
-          alert('Rahul Bhadve Account Ban gaya!')
-        })
+          this.executeCreateAccount();
+        }).catch(e => {
+          this.isError = true;
+          this.errorMessage = e.message;
+          setTimeout(() =>{
+            this.isError = false
+          }, 3000);
+      });
+    },
+    async executeCreateAccount(){
+      await setDoc(doc(qnaDatabase, "qnaUsers", this.$store.getters["userAuthentication/currentUserUID"]), {
+        userProfilePicture : '',
+        userFirstName : `${this.firstName}`,
+        userLastName : `${this.lastName}`,
+        userCreatedOn : new Date().getTime(),
+        userQueries : [],
+        followers : [],
+        following: []
+      }).then(() => {
+        this.$router.push(`/user/${this.$store.getters["userAuthentication/currentUserUID"]}`);
+      }).catch(e => {
+        throw e;
+      })
     }
   }
 }
@@ -133,5 +166,40 @@ input{
 
 .loginBtn:hover{
   color: #4CC3FF;
+}
+
+.link-container{
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 50px;
+}
+.already-member{
+  color: #6F7278;
+}
+.login-link{
+  text-decoration: none;
+  font-weight: bold;
+  color: #4CC3FF;
+}
+.login-link:hover{
+  text-decoration: underline;
+}
+.errorM-container{
+  padding-bottom: 20px;
+}
+.errM{
+  width: 70%;
+  text-align: center;
+  align-items: center;
+  border: 1px red solid;
+  border-radius: 5px;
+  background: #ab7373;
+  padding: 5px;
+  margin: auto auto 50px;
+  color: white;
+}
+
+.errM p, .errM strong{
+  background: #ab7373;
 }
 </style>

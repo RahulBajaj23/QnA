@@ -1,5 +1,6 @@
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 const qnaFirebaseConfig = {
   apiKey: "AIzaSyC1uw55DhjqQoyjxpQHugQl0SroAoiyMSc",
@@ -20,3 +21,4 @@ if(!Apps.length){
 }
 
 export const  qnaAuthenticator = getAuth(qna, {});
+export const qnaDatabase = getFirestore(qna, {});

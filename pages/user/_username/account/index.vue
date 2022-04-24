@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import authenticatedNavbar from "@/components/authenticatedNavbar";
-import accountSideNavbar from "@/components/accountSideNavbar";
+import authenticatedNavbar from "~/components/authenticatedNavbar";
+import accountSideNavbar from "~/components/accountSideNavbar";
 export default {
   name: "index",
   components : {

@@ -1,26 +1,28 @@
 <template>
   <div class="mainContainer">
-    <authenticated-navbar/>
     <div class="body">
       <div class="queryButtons">
         <button @click="newQueryUIVisible" v-if="!newQueryUIVisibility"><span><font-awesome-icon :icon="['fas', 'circle-plus']"/></span></button>
-        <button id="discardButton" @click="newQueryUIVisible" v-if="newQueryUIVisibility"><span><font-awesome-icon :icon="['fas', 'circle-xmark']"/></span></button>
+        <button id="discardButton" @click="newQueryUIVisible" v-if="newQueryUIVisibility"><span><font-awesome-icon :icon="['fas', 'circle-minus']"/></span></button>
+
       </div>
       <new-query-u-i v-if="newQueryUIVisibility"/>
-      <query-u-i/>
+      <query-list :current-user-u-i-d="this.$store.getters['userAuthentication/currentUserUID']" :queries="loadQueries"/>
     </div>
   </div>
 </template>
 
 <script>
-import authenticatedNavbar from "@/components/authenticatedNavbar";
-import queryUI from "@/components/queryUI";
-import newQueryUI from "@/components/newQueryUI";
+import authenticatedNavbar from "~/components/authenticatedNavbar";
+import newQueryUI from "~/components/newQueryUI";
+import queryList from "~/components/queryList";
+import Swal from 'sweetalert2';
 export default {
   name: "index",
+  layout: 'authenticatedLayout',
   components: {
     authenticatedNavbar,
-    queryUI,
+    queryList,
     newQueryUI
   },
   data(){
@@ -29,8 +31,17 @@ export default {
     }
   },
   methods: {
-    newQueryUIVisible(){
+    newQueryUIVisible() {
       this.newQueryUIVisibility = !this.newQueryUIVisibility
+    }
+  },
+
+  created() {
+    this.$store.dispatch('queries/getQnAQueries');
+  },
+  computed: {
+    loadQueries(){
+      return this.$store.getters['queries/loadQnAQueries'];
     }
   }
 }
@@ -52,6 +63,8 @@ export default {
   outline: none;
   color: #C5C6C7;
   font-size: 40px;
+  background: #1F2833;
+  margin-right: 5px;
 }
 
 .queryButtons button:hover{
@@ -66,4 +79,7 @@ export default {
   color: #ff4c52;
 }
 
+.swal-modal{
+  background-color: rgba(45, 108, 122, 0.42);
+}
 </style>

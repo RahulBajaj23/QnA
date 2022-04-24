@@ -12,7 +12,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" },
       { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"},
-      { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Pacifico&display=swap\""}
+      { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap"}
+
     ]
   },
 
@@ -21,10 +22,20 @@ export default {
     '~/static/main.css'
   ],
 
+  loading: {
+    color: 'teal',
+    height: '4px',
+    throttle: 0
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src : "~/plugins/firebase.js" }
   ],
+
+  router: {
+    middleware: ['authenticationVerifier']
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

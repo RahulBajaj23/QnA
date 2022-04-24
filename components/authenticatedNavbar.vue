@@ -4,7 +4,7 @@
       <img class="logo" @click="redirectToHome" :src="require('static/faq.png')" alt="QnA">
     </div>
     <div class="loginBtn">
-      <button class="login" @click="directToLogin"><span class="icon"><font-awesome-icon :icon="['fas', 'right-to-bracket']"/></span></button>
+      <button class="login" @click="directToLogin"><span class="icon"><font-awesome-icon :icon="['fas', 'right-from-bracket']"/></span></button>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
 export default {
   name: "homeNavbar",
   methods: {
-    directToLogin(){
+    executeLogout(){
       this.$router.push('/login')
     },
     redirectToHome(){
@@ -38,16 +38,19 @@ export default {
 .loginBtn{
   margin-left: 1225px;
   margin-top : 7px;
+  background: #1F2833;
 }
 
 .login{
   font-size: 30px;
   outline : none;
   border: none;
-  color: #C5C6C7
+  color: #C5C6C7;
+  background: #1F2833;
 }
 
 .login:hover{
-  color : #66FCF1
+  color : #66FCF1;
+  background: #1F2833;
 }
 </style>
