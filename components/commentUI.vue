@@ -3,7 +3,7 @@
     <p class="username">{{ commentUsername }}</p>
     <p class="comment">{{ commentMessage }}</p>
     <div class="upvote">
-      <button :disabled="!upVoteButton" @click="upVote"><span><font-awesome-icon :icon="['fas', 'sort-up']"/></span></button>
+      <button :disabled="!upVoteButton" @click="upVote"><span><font-awesome-icon :icon="['fas', 'heart']"/></span></button>
       <p class="upvoteCount">{{ commentUpvote }}</p>
     </div>
   </div>
