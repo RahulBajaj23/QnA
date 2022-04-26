@@ -18,7 +18,7 @@
     </form>
     <div class="link-container">
       <span class="new-here">New here? <nuxt-link class="register-link" to="/signup">Register</nuxt-link><br></span>
-      <span class="new-here">Forgot Password? <nuxt-link class="register-link" to="/signup">Here</nuxt-link></span>
+      <span class="new-here">Forgot Password? <nuxt-link class="register-link" to="/forgotPassword">Here</nuxt-link></span>
     </div>
     <div class="errorM-container" v-if="isError">
       <div class="ErrorM">
