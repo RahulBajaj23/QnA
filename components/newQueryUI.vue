@@ -7,12 +7,12 @@
 
       <div class="topicHeader">
         <label for="">TOPIC</label>
-        <input type="text" placeholder="Enter topic here." v-model="queryData.queryTitle">
+        <input type="text" placeholder="Enter topic here." v-model="queryData.queryTitle" required>
       </div>
 
       <div class="description">
         <label for="">DESCRIPTION</label>
-        <input type="text" placeholder="Enter description here..." v-model="queryData.queryDescription">
+        <input type="text" placeholder="Enter description here..." v-model="queryData.queryDescription" required>
       </div>
       <div class="controlButtons">
         <button type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
@@ -49,7 +49,7 @@ export default {
         if(result.isConfirmed){
           Swal.fire(
             'Discarded!',
-            'Your query has been deleted.',
+            'Your _query has been deleted.',
             'success'
           )
         }
@@ -68,7 +68,7 @@ export default {
             this.queryData.queryTitle = '';
             Swal.fire(
               'Query raised successfully!',
-              'Your query has been uploaded.',
+              'Your _query has been uploaded.',
               'success'
             )
           });
@@ -89,7 +89,6 @@ export default {
 
 <style scoped>
 .newQueryUI{
-  width: 100%;
   border: 3px solid #2D6C7A;
   padding: 30px 20px;
   border-radius: 10px;

@@ -9,17 +9,22 @@
         <p>Compsoft technologies brings a whole new UX for interaction between users and makin it faster to <br> to
         share than ever. Features that help you get <br> what you need in moment.</p>
       </div>
-      <p></p>
+<!--      <comment-u-i comment-upvote="10" comment-message="Hey!" comment-username="Rajat Yadav"/>-->
+<!--    <new-comment-u-i/>-->
     </div>
   </div>
 </template>
 
 <script>
 import homeNavbar from "~/components/homeNavbar";
+import commentUI from "@/components/commentUI";
+import newCommentUI from "@/components/newCommentUI";
 export default {
   name: "index",
   components : {
-    homeNavbar
+    homeNavbar,
+    commentUI,
+    newCommentUI
   }
 }
 </script>

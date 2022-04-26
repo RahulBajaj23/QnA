@@ -77,7 +77,7 @@ export default {
       }
     },
     directToQuery(){
-      // this.$router.push('/user/')
+      this.$router.push(`/user/${this.$store.getters['userAuthentication/currentUserUID']}/${this.queryUID}`);
     }
   },
   created() {
@@ -91,7 +91,6 @@ export default {
 
 <style scoped>
 .queryUI{
-  width: 100%;
   border: 3px solid #2D6C7A;
   padding: 30px 20px;
   border-radius: 10px;
