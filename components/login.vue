@@ -48,7 +48,7 @@ export default {
           this.$router.push(`/user/${this.$store.getters["userAuthentication/currentUserUID"]}`);
         }).catch(e => {
         this.isError = true;
-        alert(e.message);
+        this.errorMessage = e.message;
         setTimeout(() => {
           this.isError = false;
         }, 10000)
