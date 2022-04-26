@@ -27,7 +27,7 @@ export const actions = {
         });
       });
       commit("SET_COMMENT", comments);
-       console.log(comments);
+      console.log(comments);
     })
   }
 }

@@ -1,23 +1,25 @@
 <template>
-  <div class="mainContainer">
-    <div class="header">
-      <p id="designedText">Be creative here!</p>
-    </div>
-    <query-u-i
-      :current-user-u-i-d="this.$store.getters['userAuthentication/currentUserUID']"
-      :query-created-on="loadQnAQuery.queryCreatedOn"
-      query-user-linked="1234567"
-      :query-description="loadQnAQuery.queryDescription"
-      :query-title="loadQnAQuery.queryTitle"
-      :query-u-i-d="loadQnAQuery.queryUID"/>
+  <div>
+    <authenticated-navbar/>
+    <div class="mainContainer">
+      <div class="header">
+        <p id="designedText">Be creative here!</p>
+      </div>
+      <query-u-i
+        :current-user-u-i-d="this.$store.getters['userAuthentication/currentUserUID']"
+        :query-created-on="loadQnAQuery.queryCreatedOn"
+        query-user-linked="1234567"
+        :query-description="loadQnAQuery.queryDescription"
+        :query-title="loadQnAQuery.queryTitle"
+        :query-u-i-d="loadQnAQuery.queryUID"/>
 
-    <p id="Label"><span><font-awesome-icon :icon="['fas', 'message']"/></span> Threads</p>
-    <div class="commentBox">
-<!--      <comment-u-i comment-upvote="10.7k" comment-message="Yare Yare!" comment-username="PamChan"/>-->
-      <comment-list :query-comment="loadQueryComment"/>
-      <new-comment-u-i/>
+      <p id="Label"><span><font-awesome-icon :icon="['fas', 'message']"/></span> Threads</p>
+      <div class="commentBox">
+        <!--      <comment-u-i comment-upvote="10.7k" comment-message="Yare Yare!" comment-username="PamChan"/>-->
+        <comment-list :query-comment="loadQueryComment"/>
+        <new-comment-u-i/>
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -26,6 +28,7 @@ import queryUI from "@/components/queryUI";
 import commentUI from "@/components/commentUI";
 import newCommentUI from "@/components/newCommentUI";
 import commentList from "@/components/commentList";
+import authenticatedNavbar from "@/components/authenticatedNavbar";
 
 export default {
   name: "index",
@@ -33,7 +36,8 @@ export default {
     queryUI,
     commentUI,
     newCommentUI,
-    commentList
+    commentList,
+    authenticatedNavbar
   },
   created() {
     this.$store.dispatch('query/getQuery', this.$route.params.query);
@@ -54,7 +58,6 @@ export default {
 .mainContainer{
   margin: auto;
   width: 50%;
-
 }
 .commentBox{
   border: 2px #00DBDE solid;

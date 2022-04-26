@@ -107,6 +107,7 @@ export default {
   color: #C5C6C7;
   font-size: 17px;
   margin-top: 10px;
+  font-family: "Courier New";
 }
 
 .dateTime{
