@@ -110,9 +110,10 @@ export default {
 #designedText{
   background-color: #00DBDE;
   background-image: linear-gradient(64deg, #00DBDE 0%, #FC00FF 100%);
-  margin: 150px auto auto;
+  margin: 100px auto auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Gochi Hand";
 }
 
 label{
@@ -162,6 +163,7 @@ input{
   border: none;
   outline: none;
   color: #2D6C7A;
+  background: #1F2833;
 }
 
 .loginBtn:hover{

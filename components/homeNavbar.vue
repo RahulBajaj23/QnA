@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .navBar{
   width: 90%;
-  margin: auto;
+  margin: 30px auto auto;
   display: flex;
 }
 
@@ -44,7 +44,8 @@ export default {
   font-size: 30px;
   outline : none;
   border: none;
-  color: #C5C6C7
+  color: #C5C6C7;
+  background: #1F2833;
 }
 
 .login:hover{

@@ -68,7 +68,7 @@ export default {
             this.queryData.queryTitle = '';
             Swal.fire(
               'Query raised successfully!',
-              'Your _query has been uploaded.',
+              'Your query has been uploaded.',
               'success'
             )
           });

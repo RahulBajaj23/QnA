@@ -16,7 +16,15 @@
       </div>
       <button class="loginBtn" type="submit"><span><font-awesome-icon :icon="['fas', 'circle-check']"/></span></button>
     </form>
-
+    <div class="link-container">
+      <span class="new-here">New here? <nuxt-link class="register-link" to="/signup">Register</nuxt-link><br></span>
+      <span class="new-here">Forgot Password? <nuxt-link class="register-link" to="/signup">Here</nuxt-link></span>
+    </div>
+    <div class="errorM-container" v-if="isError">
+      <div class="ErrorM">
+        <p><strong>Error</strong> : {{ this.errorMessage }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -28,7 +36,9 @@ export default {
       userCredentials: {
         userEmail : '',
         userPassword : ''
-      }
+      },
+      isError : false,
+      errorMessage : ''
     }
   },
   methods: {
@@ -37,7 +47,11 @@ export default {
         .then(() => {
           this.$router.push(`/user/${this.$store.getters["userAuthentication/currentUserUID"]}`);
         }).catch(e => {
-          alert(e.message);
+        this.isError = true;
+        alert(e.message);
+        setTimeout(() => {
+          this.isError = false;
+        }, 10000)
       });
     }
   }
@@ -58,9 +72,10 @@ export default {
 #designedText{
   background-color: #00DBDE;
   background-image: linear-gradient(64deg, #00DBDE 0%, #FC00FF 100%);
-  margin: 200px auto auto;
+  margin: 150px auto auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Gochi Hand";
 }
 
 label{
@@ -95,9 +110,46 @@ input{
   border: none;
   outline: none;
   color: #2D6C7A;
+  background: #1F2833;
 }
 
 .loginBtn:hover{
   color: #4CC3FF;
+}
+
+.link-container {
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 50px;
+}
+.new-here{
+  color: #6F7278;
+}
+.register-link{
+  text-decoration: none;
+  font-weight: bolder;
+  color: #4CC3FF;
+}
+.forgot-pass a{
+  text-decoration: none;
+  font-weight: bold;
+  color: #4CC3FF;
+}
+.forgot-pass a:hover{
+  text-decoration: underline;
+}
+.errorM-container{
+  padding-bottom: 1px;
+}
+.ErrorM{
+  width: 70%;
+  text-align: center;
+  align-items: center;
+  border: 1px red solid;
+  border-radius: 5px;
+  background: #ab7373;
+  padding: 10px;
+  margin: auto auto 50px;
+  color: white;
 }
 </style>

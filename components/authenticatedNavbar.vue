@@ -3,18 +3,26 @@
     <div class="logo">
       <img class="logo" @click="redirectToHome" :src="require('static/faq.png')" alt="QnA">
     </div>
-    <div class="loginBtn">
-      <button class="login" @click="directToLogin"><span class="icon"><font-awesome-icon :icon="['fas', 'right-from-bracket']"/></span></button>
+    <div class="logoutBtn">
+      <button class="logout" @click="executeLogout"><span class="icon"><font-awesome-icon :icon="['fas', 'right-from-bracket']"/></span></button>
     </div>
   </div>
 </template>
 
-<script>
+<script>;
+import { getAuth, signOut } from "firebase/auth";
+import Cookie from "js-cookie";
 export default {
   name: "homeNavbar",
   methods: {
-    executeLogout(){
-      this.$router.push('/login')
+    async executeLogout(){
+      const auth = getAuth();
+      await signOut(auth).then(() => {
+        Cookie.remove('UserAccessToken');
+        location.href = '/';
+      }).catch(e => {
+        console.log('Something went wrong!');
+      });
     },
     redirectToHome(){
       location.href = "/"
@@ -26,8 +34,8 @@ export default {
 <style scoped>
 .navBar{
   width: 90%;
-  margin: auto;
   display: flex;
+  margin: 30px auto auto;
 }
 
 .logo{
@@ -35,13 +43,13 @@ export default {
   width: auto;
 }
 
-.loginBtn{
+.logoutBtn{
   margin-left: 1225px;
   margin-top : 7px;
   background: #1F2833;
 }
 
-.login{
+.logout{
   font-size: 30px;
   outline : none;
   border: none;
@@ -49,7 +57,7 @@ export default {
   background: #1F2833;
 }
 
-.login:hover{
+.logout:hover{
   color : #66FCF1;
   background: #1F2833;
 }
